@@ -1,0 +1,39 @@
+1: rule_1: 1 strings: s1
+
+Command: yara tar_file_1 rule_1
+
+Normal Yara workflow:
+parser:
+	convert tar_file_1 into FSM using Aho Corasick algorithm
+lexer: 
+	for each_string in [s1] in rule_1:
+		each_rule string converted it to atoms a1...an
+		for each_atom in a1...an 
+			check if each_atom present within the FSM representation of tar_file_1
+			if all n atoms match, then string s1 has an exact match with tar_file_1
+				exact_string_match_count = 1
+			else:
+				exact_string_match_count = 0
+		return exact_string_match_count
+--------------------------------------------------------------------------------
+Command: yara tar_file_1 rule_1 -t 60
+
+Normal Yara workflow:
+parser:
+	convert tar_file_1 into FSM using Aho Corasick algorithm
+lexer: 
+	for each_string in s1...s12 in rule_1:
+	each_rule string converted it to atoms a1...an
+	for each_atom in a1...an 
+		check if each_atom present within the FSM representation of tar_file_1
+		if all n atoms match, then string s1 has an exact match with tar_file_1
+	exact_string_match_count = 1
+
+	for each_atom in a1...an
+		check if each_atom present within the FSM representation of tar_file_1
+			if yes, increment atom_match_count by 1
+	partial_ratio = atom_match_count / n # percentage similarity
+	if partial_ratio >= threshold:
+		partial_string_match_count = 1
+	return exact_string_match_count, partial_string_match_count
+		
