@@ -1,5 +1,5 @@
 # Improving YARA-based Malware Detection ![](https://img.shields.io/badge/Live-darkgreen)
-## A Multi-faceted Approach Using Partial String Matching, ssdeep Fuzzy Hashing, and Family-oriented Pattern Analysis
+A Multi-faceted Approach Using Partial String Matching, ssdeep Fuzzy Hashing, and Family-oriented Pattern Analysis
 
 
 #### :teacher: Mentor
