@@ -1,6 +1,8 @@
 # Embedded YARA with Similarity Matching and Fuzzy Logic for Malware detection
 
-A brief description of your project/tool goes here.
+This project enhances the existing YARA engine by integrating partial matching functionality alongside its traditional exact matching capabilities. The tool employs fuzzy logic to classify the detection results, enabling a more comprehensive analysis of potential threats.
+
+By adding partial matching, the tool significantly improves malware detection rates, especially in scenarios where exact matches fail. Notably, this tool is highly effective when specific YARA rules for a malware are unavailable. It can detect malware by leveraging the similarity to existing YARA rules designed for related or similar malware. This capability makes the tool a powerful solution for identifying unknown or evolving threats, expanding the scope of malware detection and strengthening cybersecurity defenses.
 
 ## Prerequisites
 
