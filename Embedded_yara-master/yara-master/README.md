@@ -9,7 +9,7 @@ By adding partial matching, the tool significantly improves malware detection ra
 Before building and using this tool, ensure that the following dependencies are installed on your system:
 
 - libyara-dev
-- utoconf
+- autoconf
 - automake
 - libtool
 - pkg-config
