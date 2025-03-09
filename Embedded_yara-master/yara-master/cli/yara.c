@@ -1363,7 +1363,7 @@ static int callback(
    // printf("%d %d",f1,f2);
     printf("\nExact Matching Condition: Satisfied");
     printf("\nPartial Matching Conditon: Satisfied");
-    	printf("\nClassification: Strong MALWARE");
+    	printf("\nClassification: MALWARE");
     }
     else if(f1==0 && f2>=0){
     printf("\nExact Matching Condition: Not Satisfied");
