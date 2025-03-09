@@ -10,6 +10,7 @@ Before building and using this tool, ensure that the following dependencies are 
 
 - libyara-dev
 - autoconf
+- autoconf-archive
 - automake
 - libtool
 - pkg-config
