@@ -16,7 +16,7 @@ Before building and using this tool, ensure that the following dependencies are 
 - pkg-config
 - flex
 - bison
-- libssl-devsudo
+- libssl-dev
 
 ## Build Instructions
 
