@@ -53,7 +53,6 @@ After building, you can run the tool using:
 ```
 
 ## Usage
-Provide instructions on how to use your tool here. Include examples or command-line options if applicable:
 
 ```bash
 ./yara [yara-rules_file_name.yar] [target_file_name]
