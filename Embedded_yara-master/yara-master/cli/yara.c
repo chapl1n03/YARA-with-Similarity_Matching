@@ -1204,8 +1204,6 @@ static int handle_message(
   return CALLBACK_CONTINUE;
 }
 
-//integration
-//const char* fuzzy_logic_classification(bool exact_match, bool partial_match);
 int f1=0;
 int f2=0;
 
@@ -1369,16 +1367,6 @@ static int callback(
     return CALLBACK_CONTINUE;
   }
 
-//const char* classification = fuzzy_logic_classification(exact_match, partial_match);
-
-      //printf("Yara rule identifier name: %s\n", rule->identifier);
-      //printf("Exact matching condition: %s\n", exact_match ? "satisfied" : "not satisfied");
-      //printf("Partial matching condition: %s\n", partial_match ? "satisfied" : "not satisfied");
-      //printf("Classification: %s\n", classification);
-
-    //else if(f1==0 && f2==0 && f>=3){
-    	//printf("Classification: NOT A MALWARE\n");
-	//}
     return CALLBACK_CONTINUE;
   return CALLBACK_ERROR;
 }
