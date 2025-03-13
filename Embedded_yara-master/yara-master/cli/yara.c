@@ -90,20 +90,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     goto _exit;              \
   }
 
-
-const char* fuzzy_logic_classification(bool exact_match, bool partial_match)
-{
-    if (exact_match && partial_match) {
-        return "MALWARE";
-    } else if (exact_match && !partial_match) {
-        return "MALWARE";
-    } else if (!exact_match && partial_match) {
-        return "LIKELY MALWARE";
-    } else {
-        return "NOT A MALWARE";
-    }
-}
-
 typedef struct _MODULE_DATA
 {
   const char* module_name;
@@ -1365,12 +1351,12 @@ static int callback(
     printf("\nPartial Matching Conditon: Satisfied");
     	printf("\nClassification: MALWARE");
     }
-    else if(f1==0 && f2>=0){
+    else if(f1==0 && f2>0){
     printf("\nExact Matching Condition: Not Satisfied");
     printf("\nPartial Matching Conditon: Satisfied");
     	printf("\nClassification: LIKELY MALWARE");
     }
-    else if(f1>=0 && f2==0){
+    else if(f1>0 && f2==0){
     printf("\nExact Matching Condition: Satisfied");
     printf("\nPartial Matching Conditon: Satisfied");
     	printf("\nClassification: MALWARE");
