@@ -1369,7 +1369,7 @@ static int callback(
     return CALLBACK_CONTINUE;
   }
 
-const char* classification = fuzzy_logic_classification(exact_match, partial_match);
+//const char* classification = fuzzy_logic_classification(exact_match, partial_match);
 
       //printf("Yara rule identifier name: %s\n", rule->identifier);
       //printf("Exact matching condition: %s\n", exact_match ? "satisfied" : "not satisfied");
