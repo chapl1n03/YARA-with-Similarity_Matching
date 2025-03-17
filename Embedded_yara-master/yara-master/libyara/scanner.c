@@ -630,21 +630,28 @@ YR_API int yr_scanner_scan_mem_blocks(
             match->next = scanner->partial_matches;
             scanner->partial_matches = match;
             scanner->partial_match_count++;
-            message = CALLBACK_MSG_PARTIAL_MATCH;
-        } else {
+
+            if (yr_execute_code(scanner) == ERROR_SUCCESS) {
+              yr_bitmask_set(scanner->partial_rule_matches_flags, i);
+          }
+        } 
+        else {
           message = CALLBACK_MSG_RULE_NOT_MATCHING;
-        }
-       // scanner->callback(scanner, message, rule, scanner->user_data);
-        
+        } 
       }
     }
     }
 
+     // Check for partial matches
+     if (yr_bitmask_is_set(scanner->partial_rule_matches_flags, i)){
+         message = CALLBACK_MSG_PARTIAL_MATCH;
+       //  scanner->callback(scanner, message, rule, scanner->user_data);
+     }
+
     // Only set not matching if we have neither exact nor partial match
-if (message == 0 && (scanner->flags & SCAN_FLAGS_REPORT_RULES_NOT_MATCHING))
-{
+    if (message == 0 && (scanner->flags & SCAN_FLAGS_REPORT_RULES_NOT_MATCHING)){
     message = CALLBACK_MSG_RULE_NOT_MATCHING;
-}
+    }
 
     //end of integration part
     
@@ -663,8 +670,7 @@ if (message == 0 && (scanner->flags & SCAN_FLAGS_REPORT_RULES_NOT_MATCHING))
     }
   }
 
- scanner->callback(
-      scanner, CALLBACK_MSG_SCAN_FINISHED, NULL, scanner->user_data);
+ scanner->callback(scanner, CALLBACK_MSG_SCAN_FINISHED, NULL, scanner->user_data);
 
 _exit:
 

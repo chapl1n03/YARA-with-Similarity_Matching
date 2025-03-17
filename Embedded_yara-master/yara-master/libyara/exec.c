@@ -425,24 +425,6 @@ static YR_ITERATOR_NEXT_FUNC iter_next_func_table[] = {
 #define ITER_NEXT_TEXT_STRING_SET 5
 
 
-
-// integration code part
-const char* fuzzy_logic_classification(
-    bool exact_match,
-    bool partial_match)
-{
-    if (exact_match && partial_match) {
-        return "MALWARE";
-    } else if (exact_match && !partial_match) {
-        return "MALWARE";
-    } else if (!exact_match && partial_match) {
-        return "LIKELY MALWARE";
-    } else {
-        return "NOT A MALWARE";
-    }
-}
-//end of code
-
 typedef int (*YR_CALLBACK_FUNC)(
     YR_SCAN_CONTEXT* context,
     int message,
@@ -469,7 +451,7 @@ int yr_execute_code(YR_SCAN_CONTEXT* context)
   uint64_t elapsed_time;
 
 
-PARTIAL_MATCH* partial_match = context->partial_matches; //integration part
+// PARTIAL_MATCH* partial_match = context->partial_matches; //integration part
 
 
 #ifdef YR_PROFILING_ENABLED
@@ -1261,53 +1243,25 @@ PARTIAL_MATCH* partial_match = context->partial_matches; //integration part
       break;
 
 
-
-//integration part
-
-//if (enable_partial_matching){
-
-// Add logic to combine results using fuzzy logic
-/*bool exact_match = yr_bitmask_is_set(context->rule_matches_flags, current_rule_idx);
-bool partial_match = (context->partial_matches != NULL);
-const char* classification = fuzzy_logic_classification(exact_match, partial_match);
-
-if (strcmp(classification,"MALWARE")) {
-    // Handle malware classification
-    printf("Malware detected\n");
-} else if (strcmp(classification,"LIKELY_MALWARE")) {
-    // Handle likely malware classification
-    printf("Likely malware detected\n");
-} else {
-    // Handle clean classification
-    printf("Not a Malware\n");
-} */
-
 if (yr_bitmask_is_set(context->rule_matches_flags, current_rule_idx)) {
     context->callback(context, CALLBACK_MSG_RULE_MATCHING, rule, context->user_data);
-
-    //const char* classification = fuzzy_logic_classification(true, false);
-    //printf("Classification: %s\n", classification);
 } 
 
+/*
 if (yr_bitmask_is_set(context->partial_rule_matches_flags, current_rule_idx)) {
     context->callback(context, CALLBACK_MSG_PARTIAL_MATCH, rule, context->user_data);
-}
+} */
 
 // Partial Match Evaluation
-if (context->partial_matches != NULL) {
-    context->callback(context, CALLBACK_MSG_PARTIAL_MATCH, rule, context->user_data);
 
-    //const char* classification = fuzzy_logic_classification(false, true);
-    //printf("Classification: %s\n", classification);
-} 
+/* if (context->partial_matches != NULL) {
+    context->callback(context, CALLBACK_MSG_PARTIAL_MATCH, rule, context->user_data);
+} */
+
 // No Match
 else {
     context->callback(context, CALLBACK_MSG_RULE_NOT_MATCHING, rule, context->user_data);
-
-    //const char* classification = fuzzy_logic_classification(false, false);
-    //printf("Classification: %s\n", classification);
 }
-//}
 
 //end of code part
 
@@ -2079,11 +2033,12 @@ else {
 if (found >= 0) {
     yr_bitmask_set(context->rule_matches_flags, current_rule_idx);
 }
-        //integration code:
 
-       //    if (found < 0 && context->enable_partial_matching) {}
-        // Calculate similarity for partial matching
-        int similarity = partial_ratio(
+if(context->partial_matches != NULL) {
+    yr_bitmask_set(context->partial_rule_matches_flags, current_rule_idx);
+}
+
+   /*     int similarity = partial_ratio(
             (const char*)r1.ss->c_string,
             (const char*)r2.re->code);
 
@@ -2101,10 +2056,8 @@ if (found >= 0) {
                 // Set the partial match flag
             yr_bitmask_set(context->partial_rule_matches_flags, current_rule_idx);
             }
-        }
-   // }
-
-    //end of the code
+        } */ 
+  
 
       r1.i = found >= 0;
       push(r1);
