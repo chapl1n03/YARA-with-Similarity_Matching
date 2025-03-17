@@ -49,7 +49,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "exception.h"
 
-#define PARTIAL_MATCH_THRESHOLD 70 //integration part
+// #define PARTIAL_MATCH_THRESHOLD 70
 
 static int _yr_scanner_scan_mem_block(
     YR_SCANNER* scanner,

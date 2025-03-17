@@ -73,10 +73,19 @@ static bool strict_escape = false;
 static bool fail_on_warnings = false;
 static long max_strings_per_rule = DEFAULT_MAX_STRINGS_PER_RULE;
 
+int PARTIAL_MATCH_THRESHOLD __attribute__((visibility("default"))) = 70; //integration part
+
 #define USAGE_STRING \
   "Usage: yarac [OPTION]... [NAMESPACE:]SOURCE_FILE... OUTPUT_FILE"
 
 args_option_t options[] = {
+  OPT_LONG(
+    'p',
+    _T("partial-match threshold"),
+    &PARTIAL_MATCH_THRESHOLD,
+    _T("set the threshold for partial matches (default=70)"),
+    _T("NUMBER")),
+    
     OPT_STRING(
         0,
         _T("atom-quality-table"),

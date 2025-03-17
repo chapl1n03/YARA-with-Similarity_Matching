@@ -43,7 +43,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "yara/strutils.h"
 #include "yara/utils.h"
 
-// In yara.h
-const char* fuzzy_logic_classification(bool exact_match, bool partial_match);
+extern int PARTIAL_MATCH_THRESHOLD;
 
 #endif

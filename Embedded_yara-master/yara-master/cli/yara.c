@@ -181,18 +181,26 @@ static long max_strings_per_rule = DEFAULT_MAX_STRINGS_PER_RULE;
 static long max_process_memory_chunk = DEFAULT_MAX_PROCESS_MEMORY_CHUNK;
 static long long skip_larger = 0;
 
+int PARTIAL_MATCH_THRESHOLD __attribute__((visibility("default"))) = 70; //integration part
+
 #define USAGE_STRING \
   "Usage: yara [OPTION]... [NAMESPACE:]RULES_FILE... FILE | DIR | PID"
 
 args_option_t options[] = {
+
+  OPT_LONG(
+    'p',
+    _T("partial-match threshold"),
+    &PARTIAL_MATCH_THRESHOLD,
+    _T("set the threshold for partial matches (default=70)"),
+    _T("NUMBER")),
+
     OPT_STRING(
         0,
         _T("atom-quality-table"),
         &atom_quality_table,
         _T("path to a file with the atom quality table"),
         _T("FILE")),
-
-        OPT_BOOLEAN('p', _T("partial-matching"), &enable_partial_matching, _T("enable partial matching")),
 
     OPT_BOOLEAN(
         'C',
