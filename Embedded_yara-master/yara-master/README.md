@@ -61,7 +61,7 @@ After building, you can run the tool using:
 To specify a threshold for performing partial matching, use the -p flag followed by an integer value (0-100). 
 This value determines the similarity score required for a match.
 ```bash
-./yara -p <threshold_value> [yara-rules_file_name.yar] [target_file_name]
+./yara -p [threshold_value] [yara-rules_file_name.yar] [target_file_name]
 ```
 If the -p flag is not provided, the default threshold for partial matching is set to 70.
 
