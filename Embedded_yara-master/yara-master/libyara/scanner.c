@@ -29,6 +29,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <yara/types.h>
 #include <stdlib.h>
+#include <yara.h>
 #include <yara/ahocorasick.h>
 #include <yara/modules.h>
 #include <yara/error.h>
